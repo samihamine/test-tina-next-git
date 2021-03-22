@@ -16,7 +16,7 @@ const github = new GithubClient({
   clientId: process.env.GITHUB_CLIENT_ID, //process.env.GITHUB_CLIENT_ID,
   baseRepoFullName: process.env.REPO_FULL_NAME, //process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
   baseBranch: process.env.BASE_BRANCH, // e.g. 'master' or 'main' on newer repos
-  authScope: 'repo' // normally defaults to 'public_repo'
+  //authScope: 'repo' // normally defaults to 'public_repo'
 })
 
 const MainLayout = ({ Component, pageProps }) => {
