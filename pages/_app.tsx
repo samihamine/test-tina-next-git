@@ -1,7 +1,8 @@
 import App from 'next/app'
 import React from 'react'
 import { NextGithubMediaStore } from 'next-tinacms-github'
-import { TinaCMS, TinaProvider,  } from 'tinacms'
+import { TinaCMS, TinaProvider, ModalProvider } from 'tinacms'
+import { GlobalStyles, FontLoader } from '@tinacms/styles'
 import {
   GithubClient,
   TinacmsGithubProvider,
@@ -53,9 +54,12 @@ const MainLayout = ({ Component, pageProps }) => {
       window.location.reload()
     })
   }
-
+  const loadFonts = useShouldLoadFont(cms)
   return (
     <TinaProvider cms={cms} styled={false}>
+      <GlobalStyles />
+      {loadFonts && <FontLoader />}
+      <ModalProvider>
         <TinacmsGithubProvider
           onLogin={enterEditMode}
           onLogout={exitEditMode}
@@ -64,6 +68,7 @@ const MainLayout = ({ Component, pageProps }) => {
           <EditLink cms={cms} />
           <Component {...pageProps} />
         </TinacmsGithubProvider>
+      </ModalProvider>
     </TinaProvider>
   )
 }
